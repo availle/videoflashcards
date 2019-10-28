@@ -1,23 +1,32 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
 
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import HomeScreen from "./HomeScreen";
 import TextSideFlashScreen from "./flashcards/TextSideFlashScreen";
 import MediaSideFlashScreen from "./flashcards/MediaSideFlashScreen";
+import flashCardReducer from "./FlashCardReducer";
+import {combineReducers, createStore} from "redux";
+import {Provider} from "react-redux";
 
 const MainNavigator = createStackNavigator({
-  Home: {screen: HomeScreen},
-  TextSide: {screen: TextSideFlashScreen},
-  MediaSide: {screen: MediaSideFlashScreen}
+    Home: {screen: HomeScreen},
+    TextSide: {screen: TextSideFlashScreen},
+    MediaSide: {screen: MediaSideFlashScreen}
 });
 
-const App = createAppContainer(MainNavigator);
+const Navigation = createAppContainer(MainNavigator);
 
-export default App;
+const store = createStore(combineReducers({flashCardReducer: flashCardReducer}));
 
-const startFlashCarding = () => {
-  console.log('flashcarding started')
-};
+export default class App extends React.Component {
+    render() {
+        return (
+            <Provider store={store}>
+                <Navigation/>
+            </Provider>
+        );
+    }
+}
+
 

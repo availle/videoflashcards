@@ -1,7 +1,8 @@
 import {Button, StyleSheet, Text, View} from "react-native";
 import React from "react";
+import {connect} from "react-redux";
 
-export default class MediaSideFlashScreen extends React.Component {
+class MediaSideFlashScreen extends React.Component {
      flashCardGotIt = () => {
          console.log('got it!')
     };
@@ -29,3 +30,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 });
+
+const mapStateToProps = (state) => {
+    const {activeFlashCardSet} = state;
+    return {activeFlashCardSet}
+};
+
+export default connect(mapStateToProps)(MediaSideFlashScreen);

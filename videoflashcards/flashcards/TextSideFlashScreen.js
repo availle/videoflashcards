@@ -1,7 +1,8 @@
 import {Button, StyleSheet, Text, View} from "react-native";
 import React from "react";
+import {connect} from "react-redux";
 
-export default class TextSideFlashScreen extends React.Component {
+class TextSideFlashScreen extends React.Component {
     render() {
         const {navigate} = this.props.navigation;
 
@@ -25,3 +26,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 });
+
+const mapStateToProps = (state) => {
+    const {activeFlashCardSet} = state;
+    return {activeFlashCardSet}
+};
+
+export default connect(mapStateToProps)(TextSideFlashScreen);
