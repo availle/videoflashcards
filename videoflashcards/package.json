@@ -5,7 +5,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "find test -name '*Spec.*' | xargs _mocha --require @babel/register"
   },
   "dependencies": {
     "expo": "^35.0.0",
