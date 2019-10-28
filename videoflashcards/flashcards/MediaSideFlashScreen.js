@@ -1,20 +1,24 @@
 import {Button, StyleSheet, Text, View} from "react-native";
 import React from "react";
 
-export default function MediaSideFlashScreen() {
-    const flashCardGotIt = () => {
+export default class MediaSideFlashScreen extends React.Component {
+     flashCardGotIt = () => {
+         console.log('got it!')
     };
 
-    const flashCardNope = () => {};
+     flashCardNope = () => {
+         console.log('nope!')
+     };
 
-    var aSide = true;
-    return (
-        <View style={styles.container}>
-            <Text>Media Side</Text>
-            <Button title="Correct" onPress={flashCardGotIt}>Correct</Button>
-            <Button title="Nope" onPress={flashCardNope}>Nope</Button>
-        </View>
-    );
+     render() {
+         return (
+             <View style={styles.container}>
+                 <Text>Media Side</Text>
+                 <Button title="Correct" onPress={this.flashCardGotIt}>Correct</Button>
+                 <Button title="Nope" onPress={this.flashCardNope}>Nope</Button>
+             </View>
+         );
+     }
 }
 
 const styles = StyleSheet.create({

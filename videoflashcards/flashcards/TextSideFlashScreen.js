@@ -3,8 +3,10 @@ import React from "react";
 
 export default class TextSideFlashScreen extends React.Component {
     render() {
+        const {navigate} = this.props.navigation;
+
         const turnpls = () => {
-            console.log('turning')
+            navigate("MediaSide")
         };
         return (
             <View style={styles.container}>
