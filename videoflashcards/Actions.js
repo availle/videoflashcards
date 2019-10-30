@@ -11,3 +11,7 @@ export const flashCardNotOk = flashCardId => (
         payload: flashCardId,
     }
 );
+
+export const flashCardTurnedToMedia = () => ({
+    type: 'FLASH_CARD_TURNED_TO_MEDIA'
+});

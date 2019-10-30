@@ -1,18 +1,20 @@
 import {Button, StyleSheet, Text, View} from "react-native";
 import React from "react";
 import {connect} from "react-redux";
+import {flashCardTurnedToMedia} from "../Actions";
 
 class TextSideFlashScreen extends React.Component {
-    render() {
-        const {navigate} = this.props.navigation;
+    turnpls = () => {
+        const {replace} = this.props.navigation;
+        this.props.dispatch(flashCardTurnedToMedia());
+        replace("MediaSide")
+    };
 
-        const turnpls = () => {
-            navigate("MediaSide")
-        };
+    render() {
         return (
             <View style={styles.container}>
-                <Text>Text Side</Text>
-                <Button title="Turn pls" onPress={turnpls}>Turn Card</Button>
+                <Text>{this.props.active[this.props.current].text}</Text>
+                <Button title="Turn pls" onPress={this.turnpls}>Turn Card</Button>
             </View>
         );
     }
@@ -28,8 +30,11 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-    const {activeFlashCardSet} = state;
-    return {activeFlashCardSet}
+    const {flashCardReducer} = state;
+    console.log('MapStateToProps called on TextSide');
+    return {current: flashCardReducer.currentCardId, active: flashCardReducer.activeCards}
 };
+
+
 
 export default connect(mapStateToProps)(TextSideFlashScreen);
